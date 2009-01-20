@@ -1,0 +1,63 @@
+@import url('whitespace-reset.css');
+
+body {
+	font-family: Arial;
+	font-size: .9em;
+}
+
+a { color: #333; }
+
+.fancydropdown {
+	float: left;
+	margin: 30px 30px;
+}
+	.fancydropdown_active .fancydropdown_header {
+		border: 1px solid #ccc;
+	}
+
+.fancydropdown ul {
+	margin: 0px;
+	padding: 5px 0;
+	border-left: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	left: 0px;
+	top: 0px;
+	width: 210px;
+	z-index: 1000;
+}
+	.fancydropdown.two ul {
+		height: 100px; }
+	.fancydropdown.two a {
+		width: 193px;
+	}
+		
+.fancydropdown ul li {
+	font-size: 80%;
+	display: inline;
+	float: left;
+}
+.fancydropdown ul li a { 
+	display: inline;
+	float: left;
+	text-indent: 10px;
+	padding: 5px 0;
+	width: 210px; }
+	
+	.fancydropdown ul li a:hover {
+		background: #24b6db;
+		color: #fff;
+		cursor: pointer; }
+
+.fancydropdown_over {
+	background-color: #333; }
+	.fancydropdown_over a { color: #fff; }
+
+.fancydropdown_header {
+	position: relative;
+	background: #fff url('../images/fancydropdown_bg.gif') right 5px no-repeat;
+	padding: 5px;
+	border: 1px solid #e8e8e8;
+	width: 200px;
+	z-index: 2000;
+}

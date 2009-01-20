@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title></title>
+	<link rel="stylesheet" href="stylesheets/fancydropdown.css" type="text/css" media="screen" title="reset" charset="utf-8">
+	<script type="text/javascript" charset="utf-8" src="scripts/jquery.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../jquery.fancydropdown.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){
+			$("#stale").fancydropdown({
+				return_false: false
+			});
+			
+			$(document).fancydropdown({
+				return_false: true
+			});
+		});
+	</script>
+	
+</head>
+<body>
+	
+	<div id="container">
+		
+		<div id="stale">
+			<div class="fancydropdown">
+				<h3>My Dropdown</h3>
+				<ul>
+					<li><a href="http://cnn.com/">CNN</a></li>
+					<li><a href="http://digg.com/">DIGG</a></li>
+					<li><a href="http://thoughtandtheory.com/">Thought + Theory</a></li>
+					<li><a href="http://emprnt.com/">EMPRNT</a></li>
+					<li><a href="http://weareonlyhuman.com/">Only Human</a></li>
+					<li><a href="http://techcrunch.com/">Techcrunch</a></li>					
+				</ul>
+			</div>
+		</div>
+		
+			
+		<div class="fancydropdown two">
+			<h3>My Other Dropdown</h3>
+			<ul>
+				<li><a href="http://cnn.com/">CNN</a></li>
+				<li><a href="http://digg.com/">DIGG</a></li>
+				<li><a href="http://thoughtandtheory.com/">Thought + Theory</a></li>
+				<li class="fancydropdown_selected"><a href="http://emprnt.com/">EMPRNT</a></li>
+				<li><a href="http://weareonlyhuman.com/">Only Human</a></li>
+				<li><a href="http://techcrunch.com/">Techcrunch</a></li>					
+			</ul>
+		</div>
+		
+		
+	</div>
+	
+</body>
+</html>
