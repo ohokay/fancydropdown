@@ -14,7 +14,8 @@
 			speed: '',
 			add_hover_class: true,
 			add_list_hover_class: true,
-			return_false: false
+			return_false: false,
+			list_css_position: 'absolute'
 		}
 	};
 	
@@ -50,6 +51,8 @@
 		
 		if(dropdowns_found.length > 0)
 		{	
+			var list_selected = false;
+			
 			// add special class to each element
 			jQuery(dropdowns_found).each(function()
 			{
@@ -72,14 +75,14 @@
 				var base = jQuery(this).find("" + config.header_class + ":first");
 				jQuery(base).addClass('fancydropdown_header');
 				
-				var header_text = jQuery(base).html(); //add initial header text to a variable
+				var header_text = jQuery(base).text(); //add initial header text to a variable
 				var selected_node = '';
-				var selected_text = jQuery(base).html(); //variable holds the currently selected text
+				var selected_text = jQuery(base).text(); //variable holds the currently selected text
 				
-				//
+				//check for a selected li
 				jQuery(this).find(".fancydropdown_selected:first").each(function(){
-					jQuery(base).html(jQuery(this).html());
-					selected_text = jQuery(this).html();
+					jQuery(base).html(jQuery(this).text());
+					selected_text = jQuery(this).text();
 				});
 				
 				// add cursor: pointer if wanted
@@ -91,31 +94,33 @@
 				
 				// Add mouse event to the header element
 				jQuery(base).click(function(){
-						jQuery(base).html(header_text);
-						jQuery(list).toggle(config.speed);
+					
+					//enable outside click detection
+					jQuery(document).bind("click", function(e){
+						if(jQuery(e.target).attr('class') != 'fancydropdown_header') {
+							jQuery(this).unbind("click");
+							list_selected = false;
+							jQuery(list).hide(config.speed); // hide
+							jQuery(base).html(selected_text);
+						}
+					});
+
+					jQuery(base).html(header_text);
+					jQuery(list).toggle(config.speed);
 				});
 				
 				// Hide list elements
 				jQuery(list).css({
-					position: 'relative',
+					position: config.list_css_position,
 					display: 'none',
 					overflow: 'auto'
-				});
-				
-				// check for clicks outside of the dropbox
-				$(document).click(function(e){
-					if($(e.target).attr("class") == '')
-					{
-						jQuery(list).hide(config.speed); // hide
-						jQuery(base).html(selected_text);
-					}
 				});
 				
 				//list element links
 				jQuery(list).find("li").click(function(){	
 					
-					jQuery(base).html(jQuery(this).html());
-					selected_text = jQuery(this).html(); // added current selection to variable
+					jQuery(base).html(jQuery(this).text());
+					selected_text = jQuery(this).text(); // added current selection to variable
 					
 					// search for dropdowns
 					jQuery(list).find("li.fancydropdown_selected").each(function(){
