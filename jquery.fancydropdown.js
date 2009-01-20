@@ -49,7 +49,7 @@
 		}
 		
 		if(dropdowns_found.length > 0)
-		{
+		{	
 			// add special class to each element
 			jQuery(dropdowns_found).each(function()
 			{
@@ -72,6 +72,16 @@
 				var base = jQuery(this).find("" + config.header_class + ":first");
 				jQuery(base).addClass('fancydropdown_header');
 				
+				var header_text = jQuery(base).html(); //add initial header text to a variable
+				var selected_node = '';
+				var selected_text = jQuery(base).html(); //variable holds the currently selected text
+				
+				//
+				jQuery(this).find(".fancydropdown_selected:first").each(function(){
+					jQuery(base).html(jQuery(this).html());
+					selected_text = jQuery(this).html();
+				});
+				
 				// add cursor: pointer if wanted
 				if(config.add_default_styles) {
 					jQuery(base).css({ cursor: 'pointer' });
@@ -81,6 +91,7 @@
 				
 				// Add mouse event to the header element
 				jQuery(base).click(function(){
+						jQuery(base).html(header_text);
 						jQuery(list).toggle(config.speed);
 				});
 				
@@ -91,27 +102,41 @@
 					overflow: 'auto'
 				});
 				
+				// check for clicks outside of the dropbox
 				$(document).click(function(e){
 					if($(e.target).attr("class") == '')
 					{
-						jQuery(list).hide(config.speed);
+						jQuery(list).hide(config.speed); // hide
+						jQuery(base).html(selected_text);
 					}
 				});
 				
 				//list element links
 				jQuery(list).find("li").click(function(){	
+					
 					jQuery(base).html(jQuery(this).html());
-					jQuery(list).hide(config.speed);
+					selected_text = jQuery(this).html(); // added current selection to variable
+					
+					// search for dropdowns
+					jQuery(list).find("li.fancydropdown_selected").each(function(){
+						jQuery(this).removeClass('fancydropdown_selected');
+					});
+					
+					jQuery(this).addClass('fancydropdown_selected');
+					
+					jQuery(list).hide(config.speed); // hide
+					
 					if(config.return_false) {
 						return false;
 					}
+					
 					if(config.add_hover_class) {
 						jQuery(this).click(function() {
 							$(this).toggleClass('fancydropdown_active');
 						});
 					}
+					
 				});
-
 			});
 		}
 	} //end $.fancypants
