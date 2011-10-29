@@ -31,19 +31,19 @@ a { color: #333; }
 	.fancydropdown.two a {
 		width: 193px;
 	}
-		
+
 .fancydropdown ul li {
 	font-size: 80%;
 	display: inline;
 	float: left;
 }
-.fancydropdown ul li a { 
+.fancydropdown ul li a {
 	display: inline;
 	float: left;
 	text-indent: 10px;
 	padding: 5px 0;
 	width: 210px; }
-	
+
 	.fancydropdown ul li a:hover {
 		background: #24b6db;
 		color: #fff;
